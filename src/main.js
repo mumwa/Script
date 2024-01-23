@@ -59,6 +59,15 @@ try {
   console.error(err);
 }
 
+//json 파일 읽어오기
+try {
+  const jsonFile = fs.readFileSync(`${directoryPath}/src/test.json`, "utf8");
+  const jsonData = JSON.parse(jsonFile);
+  console.log(jsonData);
+} catch (err) {
+  console.error(err);
+}
+
 app.whenReady().then(() => {
   createWindow();
 });
