@@ -11,6 +11,7 @@ function createWindow() {
       contextIsolation: false,
     },
   });
+  win.webContents.openDevTools();
   win.loadURL("http://localhost:3000");
 }
 ipcMain.on(SEND_MAIN_PING, (event, arg) => {
