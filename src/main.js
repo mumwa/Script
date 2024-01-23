@@ -1,6 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
-const { SEND_MAIN_PING } = require("./constants");
+const { SEND_MAIN_PING } = require("./channels");
 const fs = require("fs");
 
 function createWindow() {

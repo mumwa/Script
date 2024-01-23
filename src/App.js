@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { SEND_MAIN_PING } from "./constants";
+import { SEND_MAIN_PING } from "./channels";
 
 function App() {
   const { ipcRenderer } = window.require("electron");
