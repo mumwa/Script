@@ -1,5 +1,3 @@
-import logo from "./logo.svg";
-import "./App.css";
 import { SEND_MAIN_PING, SEND_RENDERER_PING } from "./channels";
 
 function App() {
