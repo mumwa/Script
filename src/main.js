@@ -19,7 +19,10 @@ function createWindow() {
   win.loadURL("http://localhost:3000");
 }
 ipcMain.on(SEND_MAIN_PING, (event, arg) => {
-  console.log("Main.js received a ping!!!");
+  console.log("랜더러에서 메세지 수신");
+  console.log("메세지:", arg);
+  event.reply(SEND_RENDERER_PING, "메인에서 랜더러에게 답장");
+  //채널 따로 파야함
 });
 
 //디렉토리를 만듬
