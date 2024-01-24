@@ -1,6 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
-const { SEND_MAIN_PING } = require("./channels");
+const { SEND_MAIN_PING, SEND_RENDERER_PING } = require("./channels");
 const fs = require("fs");
 
 function createWindow() {
@@ -13,6 +13,9 @@ function createWindow() {
     },
   });
   win.webContents.openDevTools();
+  win.webContents.on("did-finish-load", () => {
+    win.webContents.send(SEND_RENDERER_PING, "메인에서 랜더러로");
+  });
   win.loadURL("http://localhost:3000");
 }
 ipcMain.on(SEND_MAIN_PING, (event, arg) => {
