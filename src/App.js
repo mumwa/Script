@@ -1,5 +1,11 @@
 import { SEND_MAIN_PING, SEND_RENDERER_PING } from "./channels";
 
+import IndexPage from "./pages/index";
+import MainPage from "./pages/main";
+import ScriptPage from "./pages/script";
+import SettingPage from "./pages/setting";
+import StartPage from "./pages/start";
+
 function App() {
   const { ipcRenderer } = window.require("electron");
   const sendMain = () => {
@@ -12,6 +18,11 @@ function App() {
 
   return (
     <div className="App">
+      <StartPage />
+      <SettingPage />
+      <MainPage />
+      <IndexPage />
+      <ScriptPage />
       <button onClick={sendMain}>Send Ping</button>
     </div>
   );
