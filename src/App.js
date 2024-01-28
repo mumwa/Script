@@ -6,6 +6,10 @@ import ScriptPage from "./pages/script";
 import SettingPage from "./pages/setting";
 import StartPage from "./pages/start";
 
+import { useRecoilValue } from "recoil";
+
+import { pageIndex } from "./atoms";
+
 function App() {
   const { ipcRenderer } = window.require("electron");
   const sendMain = () => {
@@ -16,13 +20,14 @@ function App() {
     console.log(payload);
   });
 
+  const page = useRecoilValue(pageIndex);
   return (
-    <div className="App">
-      <StartPage />
-      <SettingPage />
-      <MainPage />
-      <ListPage />
-      <ScriptPage />
+    <div>
+      {page === 0 && <StartPage />}
+      {page === 1 && <SettingPage />}
+      {page === 2 && <MainPage />}
+      {page === 3 && <ListPage />}
+      {page === 4 && <ScriptPage />}
       <button onClick={sendMain}>Send Ping</button>
     </div>
   );
