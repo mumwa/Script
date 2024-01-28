@@ -1,6 +1,6 @@
 import { SEND_MAIN_PING, SEND_RENDERER_PING } from "./channels";
 
-import IndexPage from "./pages/index";
+import ListPage from "./pages/list";
 import MainPage from "./pages/main";
 import ScriptPage from "./pages/script";
 import SettingPage from "./pages/setting";
@@ -21,7 +21,7 @@ function App() {
       <StartPage />
       <SettingPage />
       <MainPage />
-      <IndexPage />
+      <ListPage />
       <ScriptPage />
       <button onClick={sendMain}>Send Ping</button>
     </div>
