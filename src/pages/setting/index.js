@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-function settingPage(props) {
+function SettingPage(props) {
   return <div>settingPage</div>;
 }
-export default settingPage;
+export default SettingPage;

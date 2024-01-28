@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-function scriptPage(props) {
-  return <div>scriptPage</div>;
+function ScriptPage(props) {
+  return <div>ScriptPage</div>;
 }
-export default scriptPage;
+export default ScriptPage;

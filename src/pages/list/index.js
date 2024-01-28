@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-function listPage(props) {
+function ListPage(props) {
   return <div>listPage</div>;
 }
-export default listPage;
+export default ListPage;
