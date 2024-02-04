@@ -14,7 +14,7 @@ function ScriptPage(props) {
   };
   return (
     <div>
-      ScriptPage<button onClick={nextPage}>nextPage</button>
+      ScriptPage
       <button onClick={prevPage}>prevPage</button>
     </div>
   );
