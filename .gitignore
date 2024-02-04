@@ -1,7 +1,16 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# react
+.DS_*
+*.log
+logs
+**/*.backup.*
+**/*.back.*
+
+node_modules
+bower_components
+
 # dependencies
-/node_modules
 /.pnp
 .pnp.js
 
@@ -13,6 +22,8 @@
 
 # misc
 .DS_Store
+.AppleDouble
+.LSOverride
 .env.local
 .env.development.local
 .env.test.local
@@ -23,3 +34,5 @@ yarn-debug.log*
 yarn-error.log*
 
 package-lock.json
+
+src/style/fonts
