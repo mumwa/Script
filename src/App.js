@@ -7,7 +7,6 @@ import SettingPage from "./pages/setting";
 import StartPage from "./pages/start";
 
 import { useRecoilValue } from "recoil";
-
 import { pageIndex } from "./atoms";
 
 function App() {
