@@ -5,14 +5,36 @@ import { pageIndex } from "../../atoms";
 
 import pageRenderer from "./pageRenderer";
 
+import {
+  SCRIPT_TO_RENDERER,
+  STRUCTURE_TO_RENDERER,
+  SCRIPT_REQUEST,
+  STRUCTURE_REQUEST,
+} from "../../channels";
+
 function ListPage(props) {
-  // function pageRenderer() {
-  //   return new Promise(function (resolve, reject) {
-  //     const a = 1 + 1;
-  //     resolve(a);
-  //     reject(new Error("Request is failed"));
-  //   });
-  // }
+  const [script, setScript] = useState(null);
+  const [structure, setStructure] = useState(null);
+
+  const { ipcRenderer } = window.require("electron");
+
+  const requestScript = () => {
+    ipcRenderer.send(SCRIPT_REQUEST, "");
+  };
+  const requestStructure = () => {
+    ipcRenderer.send(STRUCTURE_REQUEST, "");
+  };
+
+  ipcRenderer.on(SCRIPT_TO_RENDERER, (event, payload) => {
+    setScript(payload);
+    console.log(payload);
+  });
+
+  ipcRenderer.on(STRUCTURE_TO_RENDERER, (event, payload) => {
+    setStructure(payload);
+    console.log(payload);
+  });
+
   const pageHandler = useSetRecoilState(pageIndex); // 값만 변경 시키기
 
   const nextPage = () => {
@@ -60,6 +82,8 @@ function ListPage(props) {
       )}
       <button onClick={nextPage}>nextPage</button>
       <button onClick={prevPage}>prevPage</button>
+      <button onClick={requestScript}>requestScript</button>
+      <button onClick={requestStructure}>requestStructure</button>
     </div>
   );
 }
