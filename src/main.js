@@ -1,6 +1,13 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
-const { SEND_MAIN_PING, SEND_RENDERER_PING } = require("./channels");
+const {
+  SEND_MAIN_PING,
+  SEND_RENDERER_PING,
+  SCRIPT_REQUEST,
+  STRUCTURE_REQUEST,
+  SCRIPT_TO_RENDERER,
+  STRUCTURE_TO_RENDERER,
+} = require("./channels");
 const fs = require("fs");
 
 function createWindow() {
@@ -28,7 +35,6 @@ ipcMain.on(SEND_MAIN_PING, (event, arg) => {
 //디렉토리를 만듬
 let directoryPath = app.getPath("userData");
 console.log("directoryPath:", directoryPath);
-
 try {
   !fs.existsSync(`${directoryPath}/src`) &&
     fs.mkdirSync(`${directoryPath}/src`);
@@ -37,6 +43,7 @@ try {
   console.error(err);
 }
 
+//structure.json, script.json 작성
 let structure = {
   1: {
     2: {
@@ -96,27 +103,47 @@ try {
   console.error(err);
 }
 
-//json 파일 읽어오기
-try {
-  const scriptJsonFile = fs.readFileSync(
-    `${directoryPath}/src/script.json`,
-    "utf8"
-  );
-  const structureJsonFile = fs.readFileSync(
-    `${directoryPath}/src/structure.json`,
-    "utf8"
-  );
-  const structureData = JSON.parse(structureJsonFile);
-  //console.log(structureData);
+ipcMain.on(SCRIPT_REQUEST, (event, arg) => {
+  console.log("SCRIPT_REQUEST, from renderer:", arg);
+  const script = readScript(arg);
+  // console.log(script);
+  event.reply(SCRIPT_TO_RENDERER, script);
+});
 
-  const scriptData = JSON.parse(scriptJsonFile);
-  //console.log(scriptData);
-  console.log(structureData[1][2][3][4]);
-  console.log(structureData[1][2][3][4][6]);
-  console.log(scriptData[1]["lists"]);
-  console.log(scriptData[1]["lists"]["-1"]["a"]);
-} catch (err) {
-  console.error(err);
+ipcMain.on(STRUCTURE_REQUEST, (event, arg) => {
+  console.log("STRUCTURE_REQUEST, from renderer:", arg);
+  const structure = readStructure(arg);
+  // console.log(structure);
+  event.reply(SCRIPT_TO_RENDERER, structure);
+});
+
+//json 파일 읽어오기
+function readScript(filename) {
+  try {
+    const scriptJsonFile = fs.readFileSync(
+      `${directoryPath}/src/script` + filename + `.json`,
+      "utf8"
+    );
+    const scriptData = JSON.parse(scriptJsonFile);
+    return scriptData;
+  } catch (err) {
+    console.error(err);
+    return "error : reading script data";
+  }
+}
+
+function readStructure(filename) {
+  try {
+    const structureJsonFile = fs.readFileSync(
+      `${directoryPath}/src/structure` + filename + `.json`,
+      "utf8"
+    );
+    const structureData = JSON.parse(structureJsonFile);
+    return structureData;
+  } catch (err) {
+    console.error(err);
+    return "error : reading structure data";
+  }
 }
 
 app.whenReady().then(() => {
