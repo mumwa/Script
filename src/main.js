@@ -114,7 +114,7 @@ ipcMain.on(STRUCTURE_REQUEST, (event, arg) => {
   console.log("STRUCTURE_REQUEST, from renderer:", arg);
   const structure = readStructure(arg);
   // console.log(structure);
-  event.reply(SCRIPT_TO_RENDERER, structure);
+  event.reply(STRUCTURE_TO_RENDERER, structure);
 });
 
 //json 파일 읽어오기
