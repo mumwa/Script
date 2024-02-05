@@ -37,29 +37,60 @@ try {
   console.error(err);
 }
 
-let array = [
-  {
-    speed_scaler: "10000",
-    very_slow_walk_speed: "4470",
-    slow_walk_speed: "8940",
-    walk_speed: "13410",
-    fast_walk_speed: "17880",
+let structure = {
+  1: {
+    2: {
+      3: {
+        4: { 6: null, 7: null },
+        5: { 6: null, 7: null },
+      },
+    },
+    바밤바: {
+      누가바: {
+        도로롱: null,
+        도롱: { 브븜: null, "빠~라밤": null },
+      },
+    },
   },
-  {
-    speed_scaler: "5000",
-    very_slow_walk_speed: "1234",
-    slow_walk_speed: "6666",
-    walk_speed: "7777",
-    fast_walk_speed: "23000",
+};
+
+let script = {
+  1: {
+    lists: {
+      "-1": { a: "블라블라블라", a: "블라블라블라", b: "블라블라블라" },
+      "-2": { a: "블라블라블라", a: "블라블라블라", b: "블라블라블라" },
+    },
   },
-];
+  2: {
+    lists: {
+      "-1": { a: "블라블라블라", a: "블라블라블라", b: "블라블라블라" },
+      "-2": { a: "블라블라블라", a: "블라블라블라", b: "블라블라블라" },
+    },
+  },
+};
 
 try {
-  if (fs.existsSync(`${directoryPath}/src/test.json`)) {
-    console.log("json 파일이 이미 있음");
+  if (fs.existsSync(`${directoryPath}/src/structure.json`)) {
+    console.log("structure.json 파일이 이미 있음");
   } else {
-    fs.writeFileSync(`${directoryPath}/src/test.json`, JSON.stringify(array));
-    console.log("json 파일 작성");
+    fs.writeFileSync(
+      `${directoryPath}/src/structure.json`,
+      JSON.stringify(structure)
+    );
+    console.log("structure.json 파일 작성");
+  }
+} catch (err) {
+  console.error(err);
+}
+try {
+  if (fs.existsSync(`${directoryPath}/src/script.json`)) {
+    console.log("script.json 파일이 이미 있음");
+  } else {
+    fs.writeFileSync(
+      `${directoryPath}/src/script.json`,
+      JSON.stringify(script)
+    );
+    console.log("script.json 파일 작성");
   }
 } catch (err) {
   console.error(err);
@@ -67,9 +98,23 @@ try {
 
 //json 파일 읽어오기
 try {
-  const jsonFile = fs.readFileSync(`${directoryPath}/src/test.json`, "utf8");
-  const jsonData = JSON.parse(jsonFile);
-  console.log(jsonData);
+  const scriptJsonFile = fs.readFileSync(
+    `${directoryPath}/src/script.json`,
+    "utf8"
+  );
+  const structureJsonFile = fs.readFileSync(
+    `${directoryPath}/src/structure.json`,
+    "utf8"
+  );
+  const structureData = JSON.parse(structureJsonFile);
+  //console.log(structureData);
+
+  const scriptData = JSON.parse(scriptJsonFile);
+  //console.log(scriptData);
+  console.log(structureData[1][2][3][4]);
+  console.log(structureData[1][2][3][4][6]);
+  console.log(scriptData[1]["lists"]);
+  console.log(scriptData[1]["lists"]["-1"]["a"]);
 } catch (err) {
   console.error(err);
 }
