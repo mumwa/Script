@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import { useSetRecoilState } from "recoil";
 import { pageIndex } from "../../atoms";
 
+import "../../style/layout.css";
+
 function MainPage(props) {
   const pageHandler = useSetRecoilState(pageIndex); // 값만 변경 시키기
 
@@ -14,9 +16,10 @@ function MainPage(props) {
   };
 
   return (
-    <div>
-      mainPage <button onClick={nextPage}>nextPage</button>
-      <button onClick={prevPage}>prevPage</button>
+    <div className="container">
+      <button onClick={prevPage}>설정으로</button>
+      게임 제목
+      <button onClick={nextPage}>시작하기</button>
     </div>
   );
 }

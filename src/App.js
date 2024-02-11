@@ -27,7 +27,7 @@ function App() {
       {page === 2 && <MainPage />}
       {page === 3 && <ListPage />}
       {page === 4 && <ScriptPage />}
-      <button onClick={sendMain}>Send Ping</button>
+      {/* <button onClick={sendMain}>Send Ping</button> */}
     </div>
   );
 }

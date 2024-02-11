@@ -12,6 +12,8 @@ import {
   STRUCTURE_REQUEST,
 } from "../../channels";
 
+import "../../style/layout.css";
+
 function ListPage(props) {
   const [script, setScript] = useState(null);
   const [structure, setStructure] = useState(null);
@@ -67,7 +69,8 @@ function ListPage(props) {
   // setk(pageRenderer());
   // console.log(k);
   return (
-    <div>
+    <div className="container">
+      <button onClick={prevPage}>뒤로 가기</button>
       listPage
       {result ? (
         <svg height="100px" width="100px">
@@ -80,8 +83,47 @@ function ListPage(props) {
       ) : (
         <div>로딩중</div>
       )}
+      {/* 1자식 2,3이면
+      <ul>
+        <li>1</li>
+        <ul>
+          <li>2</li>
+          <li>3</li>
+        </ul>
+      </ul> */}
+      <ul>
+        <li>
+          <button onClick={nextPage}>1-1</button>
+          <button onClick={nextPage}>1-2</button>
+          <button onClick={nextPage}>1-3</button>
+          <button onClick={nextPage}>1-4</button>
+        </li>
+        <ul>
+          <li>
+            <button onClick={nextPage}>2-1</button>
+            <button onClick={nextPage}>2-2</button>
+            <button onClick={nextPage}>2-3</button>
+            <button onClick={nextPage}>2-4</button>
+          </li>
+          <ul>
+            <li>
+              {" "}
+              <button onClick={nextPage}>4-1</button>
+              <button onClick={nextPage}>4-2</button>
+            </li>
+            <li>
+              {" "}
+              <button onClick={nextPage}>5</button>
+            </li>
+          </ul>
+          <li>3</li>
+          <ul>
+            <li>4</li>
+            <li>5</li>
+          </ul>
+        </ul>
+      </ul>
       <button onClick={nextPage}>nextPage</button>
-      <button onClick={prevPage}>prevPage</button>
       <button onClick={requestScript}>requestScript</button>
       <button onClick={requestStructure}>requestStructure</button>
     </div>
