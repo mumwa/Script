@@ -35,4 +35,11 @@ yarn-error.log*
 
 package-lock.json
 
+#img source
 src/style/fonts
+src/pages/list/img/
+src/pages/main/img/
+src/pages/script/img/
+src/pages/setting/img/
+src/pages/start/img/
+
