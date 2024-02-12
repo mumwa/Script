@@ -4,13 +4,9 @@ import "./style/index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-import { RecoilRoot } from "recoil";
-
 ReactDOM.render(
   <React.StrictMode>
-    <RecoilRoot>
-      <App />
-    </RecoilRoot>
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );

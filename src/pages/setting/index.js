@@ -1,23 +1,14 @@
 import React, { useState, useEffect } from "react";
 
-import { useSetRecoilState } from "recoil";
-import { pageIndex } from "../../atoms";
+import { Link } from "react-router-dom";
 
 import "../../style/layout.css";
 
 function SettingPage(props) {
-  const pageHandler = useSetRecoilState(pageIndex); // 값만 변경 시키기
-
-  const nextPage = () => {
-    pageHandler((value) => value + 1);
-  };
-  const prevPage = () => {
-    pageHandler((value) => value - 1);
-  };
   return (
     <div className="container">
       settingPage
-      <button onClick={prevPage}>뒤로가기</button>
+      <Link to="/">뒤로가기</Link>
       <h1>스토리 제목</h1>
       <input type="text" />
       <h1>제목 페이지</h1>
@@ -84,7 +75,7 @@ function SettingPage(props) {
           </li>
         </ul>
       </div>
-      <button onClick={nextPage}>확인하고 시작</button>
+      <Link to="/main">확인하고 시작</Link>
     </div>
   );
 }

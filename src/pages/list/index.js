@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-import { useSetRecoilState } from "recoil";
-import { pageIndex } from "../../atoms";
-
 import pageRenderer from "./pageRenderer";
+
+import { Link } from "react-router-dom";
 
 import {
   SCRIPT_TO_RENDERER,
@@ -37,14 +36,6 @@ function ListPage(props) {
     console.log(payload);
   });
 
-  const pageHandler = useSetRecoilState(pageIndex); // 값만 변경 시키기
-
-  const nextPage = () => {
-    pageHandler((value) => value + 1);
-  };
-  const prevPage = () => {
-    pageHandler((value) => value - 1);
-  };
   const style = {
     stroke: "rgb(255,0,0)",
     strokeWidth: 2,
@@ -70,7 +61,7 @@ function ListPage(props) {
   // console.log(k);
   return (
     <div className="container">
-      <button onClick={prevPage}>뒤로 가기</button>
+      <Link to="/main">뒤로 가기</Link>
       listPage
       {result ? (
         <svg height="100px" width="100px">
@@ -93,27 +84,25 @@ function ListPage(props) {
       </ul> */}
       <ul>
         <li>
-          <button onClick={nextPage}>1-1</button>
-          <button onClick={nextPage}>1-2</button>
-          <button onClick={nextPage}>1-3</button>
-          <button onClick={nextPage}>1-4</button>
+          <Link to="/script">1-1</Link>
+          <Link to="/script">1-2</Link>
+          <Link to="/script">1-3</Link>
+          <Link to="/script">1-4</Link>
         </li>
         <ul>
           <li>
-            <button onClick={nextPage}>2-1</button>
-            <button onClick={nextPage}>2-2</button>
-            <button onClick={nextPage}>2-3</button>
-            <button onClick={nextPage}>2-4</button>
+            <Link to="/script">2-1</Link>
+            <Link to="/script">2-2</Link>
+            <Link to="/script">2-3</Link>
+            <Link to="/script">2-4</Link>
           </li>
           <ul>
             <li>
-              {" "}
-              <button onClick={nextPage}>4-1</button>
-              <button onClick={nextPage}>4-2</button>
+              <Link to="/script">4-1</Link>
+              <Link to="/script">4-2</Link>
             </li>
             <li>
-              {" "}
-              <button onClick={nextPage}>5</button>
+              <Link to="/script">5</Link>
             </li>
           </ul>
           <li>3</li>
@@ -123,7 +112,6 @@ function ListPage(props) {
           </ul>
         </ul>
       </ul>
-      <button onClick={nextPage}>nextPage</button>
       <button onClick={requestScript}>requestScript</button>
       <button onClick={requestStructure}>requestStructure</button>
     </div>

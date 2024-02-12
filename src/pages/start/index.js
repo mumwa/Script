@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from "react";
 
-import { useSetRecoilState } from "recoil";
-import { pageIndex } from "../../atoms";
+import { Link } from "react-router-dom";
 
 import "../../style/layout.css";
 
 function StartPage(props) {
-  const pageHandler = useSetRecoilState(pageIndex); // 값만 변경 시키기
-
-  const nextPage = () => {
-    pageHandler((value) => value + 1);
-  };
-  const prevPage = () => {
-    pageHandler((value) => value - 1);
+  const style = {
+    width: "100px",
+    height: "100px",
   };
   return (
     <div className="container">
@@ -39,7 +34,7 @@ function StartPage(props) {
           </li>
         </ul>
       </div>
-      <button onClick={nextPage}>nextPage</button>
+      <Link to="/setting">nextPage</Link>
     </div>
   );
 }
